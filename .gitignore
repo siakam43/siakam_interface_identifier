@@ -1,0 +1,5 @@
+# OMC session state
+.omc/
+
+# Runtime output of the skill
+.siakam_out/
