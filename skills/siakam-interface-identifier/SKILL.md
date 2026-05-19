@@ -131,7 +131,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
    c. Dispatch a subagent with these exact instructions:
 
    ```
-   Read prompts/step3-group-analysis.md (relative to .omc/skills/siakam_interface_identifier/).
+   Read prompts/step3-group-analysis.md (relative to .omc/skills/siakam-interface-identifier/).
    Read .siakam_out/SII/arch.md for architecture context.
    Your group is NNN: <group_name>. Function list is in .siakam_out/SII/tasks.md.
    Follow step3-group-analysis.md EXACTLY.
