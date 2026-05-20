@@ -131,10 +131,10 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
    c. Dispatch a subagent with these exact instructions:
 
    ```
-   Read prompts/step2-group-analysis.md (relative to the folder where the SKILL.md file is located).
+   Read prompts/step3-group-analysis.md (relative to the folder where the SKILL.md file is located).
    Read .siakam_out/SII/arch.md for architecture context.
    Your group is NNN: <group_name>. Function list is in .siakam_out/SII/tasks.md.
-   Follow step2-group-analysis.md EXACTLY.
+   Follow step3-group-analysis.md EXACTLY.
    Write results to .siakam_out/SII/results/group_NNN.json.
    Do NOT modify tasks.md, arch.md, or other result files.
    Output: "[SIAKAM] Group NNN complete: X interfaces, Y excluded."
@@ -170,7 +170,7 @@ Proceed to Step 4.
 
 1. Verify all `results/group_*.json` files are non-empty JSON.
 
-2. Read the prompt file `prompts/step3-merge.md` and follow it exactly.
+2. Read the prompt file `prompts/step4-merge.md` and follow it exactly.
 
 3. Clean up temporary files: `tasks.md`, `results/` directory, `state.json`.
 
