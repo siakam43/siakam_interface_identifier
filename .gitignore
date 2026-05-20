@@ -1,5 +1,6 @@
 # OMC session state
 .omc/
+.claude/
 
 # Runtime output of the skill
-.siakam_out/
+.siakam_out/SII/
