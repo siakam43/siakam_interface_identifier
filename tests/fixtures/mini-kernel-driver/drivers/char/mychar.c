@@ -51,7 +51,14 @@ ssize_t mychar_read(struct file *filp, char __user *buf, size_t len, loff_t *off
     return 1;
 }
 
-/* [SIAKAM_EXPECT] confidence=high */
+/*
+ * [SIAKAM_EXPECT] exclude
+ * exclusion_reason=quick_exclusion_empty_body
+ *
+ * Reason: Function body is effectively empty — only returns 0. Even though
+ * registered in file_operations.open, this is an empty stub that receives
+ * no untrusted data and performs no meaningful interface work.
+ */
 int mychar_open(struct inode *inode, struct file *filp)
 {
     return 0;
