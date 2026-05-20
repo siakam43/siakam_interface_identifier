@@ -101,13 +101,25 @@ Proceed immediately to Step 2.
 
 6. Create `.siakam_out/SII/tasks.md` (managed EXCLUSIVELY by you):
 
+   The file has two parts: a summary table (managed by you during dispatch cycles), and per-group function listings (read-only reference for subagents).
+
    ```markdown
    ## SIAKAM Interface Analysis Tasks
    Total groups: N | Dispatched: 0 | Complete: 0 | Pending: N
+
    | # | Status | Group | Functions | File Path | Result |
    |---|--------|-------|-----------|-----------|--------|
    | 1 | pending | module_A_1 | 28 | drivers/foo/ | - |
+
+   ### Group 1: module_A_1
+
+   | # | Function | File | Line |
+   |---|----------|------|------|
+   | 1 | foo_init | drivers/foo/core.c | 150 |
+   | 2 | foo_ioctl | drivers/foo/core.c | 234 |
    ```
+
+   The per-group tables are the subagent's source of truth for which functions to analyze. The summary table (first table) is what you update: status, result columns during dispatch.
 
    Status values: `pending`, `dispatched`, `complete`, `failed`.
 
@@ -133,7 +145,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
    ```
    Read prompts/step3-group-analysis.md (relative to the folder where the SKILL.md file is located).
    Read .siakam_out/SII/arch.md for architecture context.
-   Your group is NNN: <group_name>. Function list is in .siakam_out/SII/tasks.md.
+   Read .siakam_out/SII/tasks.md — locate "Group NNN: <group_name>" and its function table (Function | File | Line).
    Follow step3-group-analysis.md EXACTLY.
    Write results to .siakam_out/SII/results/group_NNN.json.
    Do NOT modify tasks.md, arch.md, or other result files.

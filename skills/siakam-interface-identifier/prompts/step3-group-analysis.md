@@ -7,7 +7,7 @@ You are a subagent analyzing ONE group of candidate functions. Determine for eac
 ## 1. Setup
 
 1. Read `.siakam_out/SII/arch.md` — global architecture context.
-2. Read `.siakam_out/SII/tasks.md` — locate your group (Group NNN) and its function list. Note the group number NNN for `group_NNN.json`.
+2. Read `.siakam_out/SII/tasks.md` — locate the sub-section `Group NNN: <group_name>` and its function table (columns: Function, File, Line). This is your candidate function list. Note the group number NNN for `group_NNN.json`.
 
 ## 2. Recovery Check
 
@@ -17,7 +17,7 @@ Check if `.siakam_out/SII/results/group_NNN.json` already contains more than `{}
 
 ### 3.0 Load Source
 
-Read the function source at `file:line_start` from the group's entry.
+Read the function source at the file and line from the group's function table row.
 
 **If the source cannot be loaded** (file missing, line out of range, function not at expected line):
 - Record: `{ "name": "...", "file": "...", "line": N, "reason": "function source not found at <file>:<line>" }` into the `failures` array.
