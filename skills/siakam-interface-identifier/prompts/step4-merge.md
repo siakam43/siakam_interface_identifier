@@ -14,7 +14,7 @@ Collect all `interfaces` arrays into one list.
 
 **Deduplicate** by composite key `file:name`. If same `file:name` appears in multiple groups, keep the entry with higher confidence. If equal, keep the later (higher group number).
 
-**Filter**: EXCLUDE all `confidence: "low"` entries. KEEP `high` and `medium`. PLACE `confidence: "error"` entries into the `failures` array.
+**Filter**: EXCLUDE all `confidence: "low"` entries. KEEP only `high` and `medium`.
 
 **Sort** by: top-level directory of `file`, then by file path, then by line number.
 
