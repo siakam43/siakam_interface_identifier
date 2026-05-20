@@ -1,0 +1,4 @@
+# Track entry.json as test input; ignore skill runtime output
+*
+!.gitignore
+!entry.json

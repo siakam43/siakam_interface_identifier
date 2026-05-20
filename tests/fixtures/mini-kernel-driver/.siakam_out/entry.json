@@ -1,0 +1,18 @@
+{
+  "entry_functions": [
+    { "name": "mychar_ioctl",        "file": "drivers/char/mychar.c",      "line_start": 46 },
+    { "name": "mychar_read",         "file": "drivers/char/mychar.c",      "line_start": 64 },
+    { "name": "mychar_open",         "file": "drivers/char/mychar.c",      "line_start": 78 },
+    { "name": "mydrv_get_version",   "file": "drivers/char/mychar.c",      "line_start": 92 },
+    { "name": "myi2c_probe",         "file": "drivers/i2c/myi2c.c",        "line_start": 34 },
+    { "name": "myi2c_remove",        "file": "drivers/i2c/myi2c.c",        "line_start": 59 },
+    { "name": "sysfs_state_show",    "file": "drivers/gpio/mygpio.c",      "line_start": 45 },
+    { "name": "gpio_irq_handler",    "file": "drivers/gpio/mygpio.c",      "line_start": 69 },
+    { "name": "gpio_timer_fn",       "file": "drivers/gpio/mygpio.c",      "line_start": 83 },
+    { "name": "config_parser",       "file": "drivers/internal/helper.c",   "line_start": 31 },
+    { "name": "internal_add",        "file": "drivers/internal/helper.c",   "line_start": 49 },
+    { "name": "mock_test_handler",   "file": "tests/test_stubs.c",          "line_start": 24 },
+    { "name": "empty_noop",          "file": "tests/test_stubs.c",          "line_start": 36 },
+    { "name": "missing_func",        "file": "drivers/char/mychar.c",      "line_start": 9999 }
+  ]
+}
