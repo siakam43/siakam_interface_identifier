@@ -149,7 +149,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
    Follow step3-group-analysis.md EXACTLY.
    Write results to .siakam_out/SII/results/group_NNN.json.
    Do NOT modify tasks.md, arch.md, or other result files.
-   Output: "[SIAKAM] Group NNN complete: X interfaces, Y excluded."
+   Output: "[SIAKAM] Group NNN complete: X confirmed interfaces, Y excluded."
    ```
 
 2. Wait briefly (30-60 seconds), then check `results/` directory. A group is complete when its file is non-empty JSON (not `{}`).
