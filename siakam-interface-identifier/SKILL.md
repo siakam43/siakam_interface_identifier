@@ -133,11 +133,13 @@ Proceed immediately to Step 3.
 
 ## Step 3: Parallel Analysis
 
+**Concurrency limit**: `MAX_CONCURRENT = 2` — maximum number of subagents allowed to run simultaneously.
+
 ### 3.1 Dispatch Loop
 
 Repeat until all groups in `tasks.md` are `complete` or `failed`:
 
-1. For each `pending` group in `tasks.md`:
+1. Count currently `dispatched` groups in the tasks.md summary table. If `dispatched < MAX_CONCURRENT`, dispatch ONE `pending` group:
    a. Create placeholder: write `{}` to `.siakam_out/SII/results/group_NNN.json` (NNN = group number, zero-padded to 3 digits).
    b. Update status to `dispatched` in tasks.md.
    c. Dispatch a subagent with these exact instructions:
@@ -152,9 +154,11 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
    Output: "[SIAKAM] Group NNN complete: X confirmed interfaces, Y excluded."
    ```
 
-2. Wait briefly (30-60 seconds), then check `results/` directory. A group is complete when its file is non-empty JSON (not `{}`).
+   Repeat step 1 (count → dispatch) until no more pending groups OR `dispatched >= MAX_CONCURRENT`.
 
-3. Update tasks.md and state.json. Report progress:
+2. Wait briefly (30-60 seconds), then check `results/` directory. A group is complete when its file is non-empty JSON (not `{}`). For each completed group, update its status to `complete` in tasks.md (this frees a concurrency slot for the next iteration).
+
+3. Update state.json. Report progress:
 
    ```
    [SIAKAM] Status: <complete>/<total> groups done | <dispatched> in progress | <pending> remaining
