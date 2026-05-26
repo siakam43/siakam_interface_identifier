@@ -114,12 +114,19 @@ Do NOT assume dead code. Registration may be invisible to grep (linker scripts, 
 
 Re-write the complete results file every 5 functions. This guards against mid-analysis crashes. Each write replaces the file with ALL results so far.
 
+The result file MUST include a `status` field:
+- `"status": "in_progress"` — while analysis is ongoing (progress writes)
+- `"status": "complete"` — ONLY on the final write after ALL functions have been analyzed
+
+The main agent uses this field to detect completion. Do NOT set `status` to `complete` until every function in your group has been processed.
+
 ### 4.B Result File Format
 
 Write to `.siakam_out/SII/results/group_NNN.json` (NNN = 3-digit group number):
 
 ```json
 {
+  "status": "complete",
   "group": "module_A_1", "group_number": 1,
   "analyzed_at": "<ISO timestamp>",
   "functions_total": 28, "functions_confirmed": 3,

@@ -140,7 +140,7 @@ Proceed immediately to Step 3.
 Repeat until all groups in `tasks.md` are `complete` or `failed`:
 
 1. Count currently `dispatched` groups in the tasks.md summary table. If `dispatched < MAX_CONCURRENT`, dispatch ONE `pending` group:
-   a. Create placeholder: write `{}` to `.siakam_out/SII/results/group_NNN.json` (NNN = group number, zero-padded to 3 digits).
+   a. Create placeholder: write `{"status": "in_progress"}` to `.siakam_out/SII/results/group_NNN.json` (NNN = group number, zero-padded to 3 digits).
    b. Update status to `dispatched` in tasks.md.
    c. Dispatch a subagent with these exact instructions:
 
@@ -156,7 +156,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
 
    Repeat step 1 (count → dispatch) until no more pending groups OR `dispatched >= MAX_CONCURRENT`.
 
-2. Wait briefly (30-60 seconds), then check `results/` directory. A group is complete when its file is non-empty JSON (not `{}`). For each completed group, update its status to `complete` in tasks.md (this frees a concurrency slot for the next iteration).
+2. Wait briefly (30-60 seconds), then check `results/` directory. A group is complete when its file contains valid JSON with `"status": "complete"`. Files with `"status": "in_progress"` or placeholder `{}` are still running. For each completed group, update its status to `complete` in tasks.md (this frees a concurrency slot for the next iteration).
 
 3. Update state.json. Report progress:
 
@@ -166,7 +166,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
 
 ### 3.2 Fault Tolerance
 
-- A group is **failed** if its result file is still `{}` or empty after 15 minutes.
+- A group is **failed** if its result file still has `"status": "in_progress"` or is `{}` after 15 minutes.
 - Delete the placeholder, reset status to `pending`, retry up to 2 times.
 - If still failing after 2 retries, mark `failed` in tasks.md. Record for Step 4 errors.
 
@@ -211,7 +211,7 @@ When `--resume` is passed:
 2. Based on `state.json` step:
    - **0 or 1**: Re-run from Step 1.
    - **2**: Re-run from Step 2.
-   - **3**: Skip to Step 3. Check `tasks.md` vs `results/`: groups with non-empty result files are `complete`, empty/placeholder files reset to `pending`.
+   - **3**: Skip to Step 3. Check `tasks.md` vs `results/`: groups with result files containing `"status": "complete"` are already done, files with `"status": "in_progress"` or placeholder `{}` reset to `pending`.
    - **4**: Skip to Step 4.
 
 3. Resume from the indicated step.
