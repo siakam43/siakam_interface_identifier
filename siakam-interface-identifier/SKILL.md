@@ -134,6 +134,7 @@ Proceed immediately to Step 3.
 ## Step 3: Parallel Analysis
 
 **Concurrency limit**: `MAX_CONCURRENT = 2` — maximum number of subagents allowed to run simultaneously.
+**Subagent timeout**: `SUBTASK_TIMEOUT_MINUTES = 15` — a group is considered failed if uncompleted after this duration.
 
 ### 3.1 Dispatch Loop
 
@@ -166,7 +167,7 @@ Repeat until all groups in `tasks.md` are `complete` or `failed`:
 
 ### 3.2 Fault Tolerance
 
-- A group is **failed** if its result file still has `"status": "in_progress"` or is `{}` after 15 minutes.
+- A group is **failed** if its result file still has `"status": "in_progress"` or is `{}` after `SUBTASK_TIMEOUT_MINUTES` minutes.
 - Delete the placeholder, reset status to `pending`, retry up to 2 times.
 - If still failing after 2 retries, mark `failed` in tasks.md. Record for Step 4 errors.
 
